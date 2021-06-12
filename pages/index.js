@@ -72,8 +72,9 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>{`Ghantaghar | ${displayTime}`}</title>
-        <meta name="description" content="GhantaGhar is the first public tower clock in Nepal, situated at the heart of the capital city of Kathmandu. It shows current Nepal Standard Time." />
+        <meta name="description" content={`GhantaGhar is the first public tower clock in Nepal, situated at the heart of the capital city of Kathmandu. It shows current Nepal Standard Time. It's ${displayTime} in Nepal.`} />
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:image" content="https://ghantaghar.org/images/ghantaghar.png" />
       </Head>
 
       <main className={styles.main}>
