@@ -1,8 +1,10 @@
 import React from 'react';
-export default function Tree(){
+export default function Tree(props){
     return(
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 511.988 511.988" style={{enableBackground:"new 0 0 511.988 511.988", position: 'absolute', left: 25, height: 210, bottom: 114 }} xmlSpace="preserve">
+	 viewBox="0 0 511.988 511.988" 
+	 style={{enableBackground:"new 0 0 511.988 511.988", position: 'absolute', left: props.isMobile?10:25, height: props.isMobile?110:210, bottom: 114 }} 
+	 xmlSpace="preserve">
 <path style={{fill: "#9A795F"}} d="M393.702,242.352c0,0,0,35.424-43.84,61.872c-12.192,7.344-27.168-3.936-23.648-17.744
 	c6.496-25.456,14.096-60.912,14.096-87.44c0-46.336-52.08,19.136-52.08,19.136l9.76,69.504c0,0-6.288,22.768-23.36,42.88
 	c-8.32,9.808-24.144,6.272-27.648-6.096c-5.808-20.416-8.992-53.184,9.472-92.192c31.472-66.496-44.08-7.056-44.08-7.056

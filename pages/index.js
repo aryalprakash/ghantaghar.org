@@ -9,6 +9,9 @@ import Tree from '../assets/svg/tree';
 
 export default function Home() {
   const [displayTime, setDisplayTime] = useState("");
+  const [width, setWidth] = useState(720);
+  const [height, setHeight] = useState(1024);
+  
   useEffect(()=>{
     const timer = setInterval(() => {
       rotateHands();
@@ -68,6 +71,20 @@ export default function Home() {
     document.getElementById('hour').setAttribute('transform', 'rotate(-'+360*(total_hours/43200)+',178,276)');
   }
 
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+        setHeight(window.innerHeight);
+    }
+    useEffect(() => {
+      handleWindowSizeChange();
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
+
+  let isMobile = (width <= 768);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -79,9 +96,9 @@ export default function Home() {
 
       <main className={styles.main}>
         <div className={styles.App}>
-          <Ghantaghar  />
-          <Clouds style={{zIndex: -1, position: 'absolute', left: 0}} />
-          <Tree />
+          <Ghantaghar width={width} height={height} isMobile={isMobile}  />
+          <Clouds width={width} isMobile={isMobile} style={{zIndex: -1, position: 'absolute', left: 0}} />
+          <Tree isMobile={isMobile} />
           <div className={styles.road} style={{backgroundImage: "url(/images/road1.jpg)"}} />
         </div>
       </main>
