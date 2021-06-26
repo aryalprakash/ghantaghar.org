@@ -34,7 +34,7 @@ function getTime(){
     
     var am = true;
     var hours = tf_hours;
-    if(hours > 12){
+    if(hours === 0 || hours > 12){
       hours = Math.abs(tf_hours - 12);
       am = false;
     }
