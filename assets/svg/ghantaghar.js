@@ -1,8 +1,7 @@
 import React from 'react';
 export default function Ghantaghar(props){
-  console.log(props.height)
   return(
-<svg version="1.1" id="svg2" width="480" height="672" style={{width: '100%'}} viewBox={`0 0 480 ${props.height}`} xmlns="http://www.w3.org/2000/svg">
+<svg version="1.1" id="svg2" width="480" style={{width: '100%', height: 'inherit'}} viewBox={`0 0 480 ${props.height}`} xmlns="http://www.w3.org/2000/svg">
   <defs id="defs6">
     <clipPath clipPathUnits="userSpaceOnUse" id="clipPath38">
       <path d="M 0,504 H 360 V 0 H 0 Z" id="path36"/>

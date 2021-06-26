@@ -1,11 +1,12 @@
 import React from 'react';
 export default function Clouds(props){
-  const cloud1 = "#bddeff";
-  const cloud2 = "#ffffff";
-  const cloud3 = "#f1f2f3";
+  const cloud1 = props.nightMode?"grey":"#bddeff";
+  const cloud2 = props.nightMode?"#d3d3d3":"#ffffff";
+  const cloud3 = props.nightMode?"#efefef":"#f1f2f3";
+  const background = props.nightMode?"#3d3d3e":"#7aceff";
     return(
         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" 
-        style={{position: "absolute", zIndex: -1, top:0, left:0, margin:"auto",background:"#7aceff",display:"block", width: '100%', height: '100vh'}} 
+        style={{position: "absolute", zIndex: -1, top:0, left:0, margin:"auto",background:background,display:"block", width: '100%', height: '100vh'}} 
         width="1440" height="789" preserveAspectRatio="xMidYMid" viewBox="0 0 1440 789">
 <g transform={`translate(720,${props.isMobile?-294.5:194.5}) scale(1,1) translate(-720,-394.5)`}><g transform="translate(-100 382.29427748518486) rotate(0)">
   <animateTransform attributeName="transform" type="translate" keyTimes="0;1" values="-100 382.29427748518486;1440 382.29427748518486" dur="266.22222222222227s" repeatCount="indefinite" begin="-65.81350354382754s"></animateTransform>
