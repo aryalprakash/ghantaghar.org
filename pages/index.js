@@ -32,13 +32,12 @@ function getTime(){
     var minutes = date.getMinutes();
     var tf_hours = date.getHours();
     
-    var am = true;
+    var am = tf_hours>12?false:true;
     var hours = tf_hours;
     if(hours === 0 || hours > 12){
       hours = Math.abs(tf_hours - 12);
-      am = false;
     }
-    
+
     const display_time = `${hours}:${minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}${am?"AM":"PM"}`
     
     return {
