@@ -7,6 +7,8 @@ import Ghantaghar from '../assets/svg/ghantaghar.js';
 import Clouds from "../assets/svg/clouds.js";
 import Tree from '../assets/svg/tree';
 import Moon from "../assets/svg/moon";
+import { MdVolumeUp, MdVolumeOff } from "react-icons/md";
+
 
 export async function getStaticProps() {
   const date = await getTime();
@@ -55,7 +57,9 @@ export default function Home(props) {
   const [width, setWidth] = useState(720);
   const [height, setHeight] = useState(1024);
   const [nightMode, setNightMode] = useState(props.nightMode);
-  
+  const [isMute, setIsMute ] = useState(false);
+  const [sound] = useState(typeof Audio !== "undefined" && new Audio("/ghantaghar.wav"));
+
   useEffect(()=>{
     const timer = setInterval(() => {
       rotateHands();
@@ -78,7 +82,7 @@ export default function Home(props) {
     let count = 0;
     const timer = setInterval(() => {
       if(count<hours){
-        new Audio("/ghantaghar.wav").play();
+        sound.play();
         count+=1;
       } else {
         clearInterval(timer)
@@ -109,6 +113,16 @@ export default function Home(props) {
     document.getElementById('second').setAttribute('transform', 'rotate(-'+360*(seconds/60)+',178,276)');
     document.getElementById('minute').setAttribute('transform', 'rotate(-'+360*(total_minutes/3600)+',178,276)');
     document.getElementById('hour').setAttribute('transform', 'rotate(-'+360*(total_hours/43200)+',178,276)');
+  }
+
+  const muteUnmute=()=>{
+    if(isMute){
+      sound.muted = false
+      setIsMute(false)
+    } else {
+      sound.muted = true
+      setIsMute(true)
+    }
   }
 
     function handleWindowSizeChange() {
@@ -147,6 +161,12 @@ export default function Home(props) {
 
       <main className={styles.main}>
         <div className={styles.App}>
+          <div onClick={muteUnmute} style={{position: 'absolute', color: "grey", cursor: 'pointer', zIndex: 11111, right: 10, top: 10}}>
+          {isMute? 
+            <MdVolumeOff size={25} /> : 
+            <MdVolumeUp size={25} />
+          }
+          </div>
           <Ghantaghar width={width} height={height} isMobile={isMobile} nightMode={nightMode} />
           <Clouds width={width} isMobile={isMobile} nightMode={nightMode} style={{zIndex: -1, position: 'absolute', left: 0}} />
           <Tree isMobile={isMobile} />
