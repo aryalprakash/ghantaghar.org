@@ -7,8 +7,8 @@ import Ghantaghar from '../assets/svg/ghantaghar.js';
 import Clouds from "../assets/svg/clouds.js";
 import Tree from '../assets/svg/tree';
 import Moon from "../assets/svg/moon";
-import { MdVolumeUp, MdVolumeOff } from "react-icons/md";
-
+import { MdNotificationsActive, MdNotificationsOff, MdRadio, MdPlayCircleFilled, MdPauseCircleFilled } from "react-icons/md";
+import {FaSlash} from "react-icons/fa";
 
 export async function getStaticProps() {
   const date = await getTime();
@@ -58,7 +58,9 @@ export default function Home(props) {
   const [height, setHeight] = useState(1024);
   const [nightMode, setNightMode] = useState(props.nightMode);
   const [isMute, setIsMute ] = useState(false);
+  const [stream, setStream] = useState(false);
   const [sound] = useState(typeof Audio !== "undefined" && new Audio("/ghantaghar.wav"));
+  const [radioNepal] = useState(typeof Audio !== "undefined" && new Audio("http://103.69.126.230:8000/stream"));
 
   useEffect(()=>{
     const timer = setInterval(() => {
@@ -125,6 +127,16 @@ export default function Home(props) {
     }
   }
 
+  const streamRadio=()=>{
+    if(stream){
+      radioNepal.pause()
+      setStream(false)
+    } else {
+      radioNepal.play()
+      setStream(true)
+    }
+  }
+
     function handleWindowSizeChange() {
         setWidth(window.innerWidth);
         setHeight(window.innerHeight);
@@ -161,11 +173,19 @@ export default function Home(props) {
 
       <main className={styles.main}>
         <div className={styles.App}>
-          <div onClick={muteUnmute} style={{position: 'absolute', color: "grey", cursor: 'pointer', zIndex: 11111, right: 10, top: 10}}>
-          {isMute? 
-            <MdVolumeOff size={25} /> : 
-            <MdVolumeUp size={25} />
-          }
+          <div  style={{position: 'absolute', display: 'flex', justifyContent: 'space-around', flexDirection: 'row', color: "#fff", width: 60, cursor: 'pointer', zIndex: 11111, right: 10, top: 10}}>
+            <div alt="Radio Nepal" onClick={streamRadio} style={{position: 'relative'}}>
+              <div style={{position: 'absolute', color:"#9a785f", right: 4, bottom: 3.8}}>
+                {!stream? <MdPlayCircleFilled size={15} />: <MdPauseCircleFilled size={15} />}
+              </div>
+              <MdRadio  size={23} />
+            </div>
+            <div onClick={muteUnmute}>
+              {isMute? 
+                <MdNotificationsOff size={25} /> : 
+                <MdNotificationsActive size={25} />
+              }
+            </div>
           </div>
           <Ghantaghar width={width} height={height} isMobile={isMobile} nightMode={nightMode} />
           <Clouds width={width} isMobile={isMobile} nightMode={nightMode} style={{zIndex: -1, position: 'absolute', left: 0}} />
