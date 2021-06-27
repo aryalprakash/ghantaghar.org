@@ -94,6 +94,8 @@ export default function Home(props) {
     const {hours, tf_hours, minutes, seconds, display_time} = date;
     if(tf_hours>18 || tf_hours<6){
       setNightMode(true)
+    } else {
+      setNightMode(false)
     }
     
     const total_minutes = (minutes * 60) + seconds;
