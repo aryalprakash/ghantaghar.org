@@ -8,7 +8,7 @@ import Clouds from "../assets/svg/clouds.js";
 import Tree from '../assets/svg/tree';
 import Moon from "../assets/svg/moon";
 import { MdNotificationsActive, MdNotificationsOff, MdRadio, MdPlayCircleFilled, MdPauseCircleFilled } from "react-icons/md";
-import {FaSlash} from "react-icons/fa";
+import SajhaBus from '../assets/svg/sajha_bus';
 
 export async function getStaticProps() {
   const date = await getTime();
@@ -191,6 +191,7 @@ export default function Home(props) {
           <Clouds width={width} isMobile={isMobile} nightMode={nightMode} style={{zIndex: -1, position: 'absolute', left: 0}} />
           <Tree isMobile={isMobile} />
           {/* {nightMode && <Moon />} */}
+          <SajhaBus />
           <div className={styles.road} style={{backgroundImage: "url(/images/road1.jpg)"}} />
         </div>
       </main>
